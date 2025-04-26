@@ -1,6 +1,7 @@
 
 package vistas;
 
+import controller.Archivos;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,7 @@ import modelo.Archivo;
 import modelo.ArchivosDatos;
 import modelo.Carpetas;
 import modelo.CarpetasMuestra;
+import modelo.Configuraciones;
 import vistasJframe.InputFile;
 
 public class CuadroCarpetasPanel extends javax.swing.JPanel {
@@ -44,6 +46,16 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         return moldePrincipal;
     }
 
+    public LogoPrincipalPanel getCuadroInicio() {
+        return cuadroInicio;
+    }
+
+    public void setCuadroInicio(LogoPrincipalPanel cuadroInicio) {
+        this.cuadroInicio = cuadroInicio;
+    }
+
+    
+    
     public void setMoldePrincipal(JWindow moldePrincipal) {
         this.moldePrincipal = moldePrincipal;
     }
@@ -202,7 +214,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         this.setSize(ancho,largo);
         this.JPanelArchivos.setSize(ancho - margen * 2, largo - margen);
         this.JPanelArchivos.setLocation(margen , margen);
-    }
+    }    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -242,7 +254,10 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(SwingUtilities.isRightMouseButton(evt)){
             this.agregarMenuInterno(evt);
+            return;
         }
+        
+        
     }//GEN-LAST:event_JPanelArchivosMousePressed
 
 

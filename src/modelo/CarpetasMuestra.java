@@ -54,7 +54,7 @@ public class CarpetasMuestra extends javax.swing.JPanel {
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion + "/"+this.nombre;
+        this.direccion = direccion;
     }
     
     
@@ -166,6 +166,27 @@ public class CarpetasMuestra extends javax.swing.JPanel {
         //this.padreComponente.setVisible(false);
     }
     
+    private void agregarArchivosCarpeta(){
+        Archivos prueba = new Archivos();
+        System.out.println("direccion : " + this.direccion );
+        ArrayList<Archivo> valores = prueba.obtenerDatosCarpeta(this.direccion,true);
+        
+        for(Archivo nota : valores){
+            System.out.println("titulo : "+nota.getNombre());
+            System.out.println("direccion : " + nota.getDireccion());
+            System.out.println("tipo : "+nota.getTipo());
+            String content = nota.isContenido()?"si":"no";
+            System.out.println("cotenido : "+content);
+            System.out.println("----------------------------------------");
+        }
+        
+        ArchivosDatos  valoresAux = new ArchivosDatos(valores);
+        
+        padreComponente.getCuadroInicio().iniciarArchivoData(valoresAux);
+        padreComponente.getCuadroInicio().updateCuadros();
+        
+    }
+    
     private void PanelArchivoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelArchivoMousePressed
         // TODO add your handling code here:
         if(SwingUtilities.isRightMouseButton(evt)){
@@ -175,6 +196,7 @@ public class CarpetasMuestra extends javax.swing.JPanel {
         }
         this.crearVentanaTrabajo();
         System.out.println("click derecho");
+        this.agregarArchivosCarpeta();
     }//GEN-LAST:event_PanelArchivoMousePressed
 
 

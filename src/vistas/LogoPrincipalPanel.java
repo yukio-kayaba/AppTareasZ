@@ -158,6 +158,8 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_JLabelPrincipalMouseClicked
     
     public void updateCuadros(){
+        String valorFile = this.fileActive ? "si":"no";
+        System.out.println("Activo : "+ valorFile);
         if( this.fileActive){
            this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio, 3);
            this.cuadroArchivosData.setLocation(0, 65);

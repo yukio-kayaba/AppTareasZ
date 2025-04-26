@@ -61,8 +61,9 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         if(this.informacion.cantidadArchivos() == 0 ){
             JLabel valorAux = new JLabel();
             valorAux.setText("0");
-            valorAux.setSize(WIDTH,HEIGHT);
+            //valorAux.setSize(WIDTH,HEIGHT);
             valorAux.setHorizontalAlignment(JLabel.CENTER);
+            this.JPanelArchivos.setLayout(null);
             this.JPanelArchivos.add(valorAux);
             return;
         }
