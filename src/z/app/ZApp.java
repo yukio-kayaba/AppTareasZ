@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import modelo.Archivo;
 import modelo.ArchivosDatos;
 import modelo.Configuraciones;
-import vistas.LogoPrincipal;
 
 
 public class ZApp {

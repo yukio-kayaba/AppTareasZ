@@ -56,7 +56,6 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         JLabelPrincipal = new javax.swing.JPanel();
-        imagen1 = new com.mycompany.pruebas.Imagen();
 
         JLabelPrincipal.setBackground(new java.awt.Color(1, 6, 82));
         JLabelPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -72,18 +71,15 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
             }
         });
 
-        imagen1.setText("imagen1");
-        imagen1.setRuta("/recursos/2.png");
-
         javax.swing.GroupLayout JLabelPrincipalLayout = new javax.swing.GroupLayout(JLabelPrincipal);
         JLabelPrincipal.setLayout(JLabelPrincipalLayout);
         JLabelPrincipalLayout.setHorizontalGroup(
             JLabelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imagen1, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+            .addGap(0, 72, Short.MAX_VALUE)
         );
         JLabelPrincipalLayout.setVerticalGroup(
             JLabelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imagen1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addGap(0, 60, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -149,6 +145,5 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JLabelPrincipal;
-    private com.mycompany.pruebas.Imagen imagen1;
     // End of variables declaration//GEN-END:variables
 }

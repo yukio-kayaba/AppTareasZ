@@ -13,9 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import vistas.CuadroArchivos;
 import vistas.CuadroCarpetasPanel;
-import vistas.CuadroTareas;
 
 public class CarpetasMuestra extends javax.swing.JPanel {
     private String nombre;
@@ -78,7 +76,6 @@ public class CarpetasMuestra extends javax.swing.JPanel {
     private void initComponents() {
 
         PanelArchivo = new javax.swing.JPanel();
-        imagen1 = new com.mycompany.pruebas.Imagen();
         JLabelNombreCarpeta = new javax.swing.JLabel();
 
         PanelArchivo.setBackground(new java.awt.Color(204, 204, 204));
@@ -97,11 +94,6 @@ public class CarpetasMuestra extends javax.swing.JPanel {
             }
         });
         PanelArchivo.setLayout(null);
-
-        imagen1.setText("imagen1");
-        imagen1.setRuta("/recursos/carpetas.png");
-        PanelArchivo.add(imagen1);
-        imagen1.setBounds(10, 0, 30, 30);
 
         JLabelNombreCarpeta.setFont(new java.awt.Font("Yu Gothic UI", 0, 8)); // NOI18N
         JLabelNombreCarpeta.setForeground(new java.awt.Color(0, 0, 0));
@@ -162,7 +154,7 @@ public class CarpetasMuestra extends javax.swing.JPanel {
         Archivos datosArchivos = new Archivos();
         ArrayList<Archivo> valoresAux = datosArchivos.obtenerDatosCarpeta(direccion, true);
         ArchivosDatos controllerTxt = new ArchivosDatos(valoresAux);
-        CuadroArchivos valores = new CuadroArchivos(controllerTxt, this.nombre);
+        //CuadroArchivos valores = new CuadroArchivos(controllerTxt, this.nombre);
         //valores.setContenedorMain(this.padreComponente);
         //valores.setVisible(true);
         //this.padreComponente.setVisible(false);
@@ -183,6 +175,5 @@ public class CarpetasMuestra extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelNombreCarpeta;
     private javax.swing.JPanel PanelArchivo;
-    private com.mycompany.pruebas.Imagen imagen1;
     // End of variables declaration//GEN-END:variables
 }
