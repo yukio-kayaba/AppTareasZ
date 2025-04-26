@@ -24,7 +24,10 @@ public class InputFile extends javax.swing.JFrame {
     private int opcionCuadro = 1;
     private int indice;
     public InputFile() {
+        this.setUndecorated(true);
         initComponents();
+        
+        this.jPanel1.setBackground(new Color(0,0,0,10));
     }
 
     /**
@@ -44,9 +47,12 @@ public class InputFile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 102));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel2.setLayout(null);
 
         txtJugador2.setBackground(new java.awt.Color(249, 230, 254));
         txtJugador2.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
@@ -83,27 +89,13 @@ public class InputFile extends javax.swing.JFrame {
                 txtJugador2KeyTyped(evt);
             }
         });
+        jPanel2.add(txtJugador2);
+        txtJugador2.setBounds(46, 3, 140, 33);
 
         imagen1.setText("imagen1");
         imagen1.setRuta("/recursos/carpetas.png");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imagen1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(txtJugador2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addComponent(imagen1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel2.add(imagen1);
+        imagen1.setBounds(6, 3, 34, 33);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 190, 40);
@@ -111,13 +103,15 @@ public class InputFile extends javax.swing.JFrame {
         imagen2.setText("imagen2");
         imagen2.setRuta("/recursos/indicador.png");
         jPanel1.add(imagen2);
-        imagen2.setBounds(190, 0, 46, 40);
+        imagen2.setBounds(190, 3, 30, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +172,7 @@ public class InputFile extends javax.swing.JFrame {
                 System.out.println("valores : "+txtJugador2.getText());
                 String nombre = txtJugador2.getText();
                 if(nombre.length() == 0 || nombre.equals("nombre Carpeta") || !activo ){
-                    padreObjeto.CargarDatos();
+                    //padreObjeto.CargarDatos();
                     return;
                 }
                 activo = false;
@@ -206,7 +200,7 @@ public class InputFile extends javax.swing.JFrame {
                 System.out.println("valores : "+txtJugador2.getText());
                 String nombre = txtJugador2.getText();
                 if(nombre.length() == 0 || nombre.equals("nombre Carpeta") || !activo){
-                    padreObjeto.CargarDatos();
+                    //padreObjeto.CargarDatos();
                     return;
                 }
                 activo = false;

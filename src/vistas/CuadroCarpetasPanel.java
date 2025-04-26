@@ -86,9 +86,10 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         //this.cuadroInicio.modificarDimensionMolde(250, this.JPanelArchivos.getHeight());
         InputFile carpeta = new InputFile();
         //[206, 31]
-        carpeta.setLayout(null);
-        carpeta.setSize(206 , 31);
-        carpeta.setLocation(  900, posY);
+        //carpeta.setLayout(null);
+        carpeta.setSize(240 , 40);
+        int posX = this.moldePrincipal.getX() - 230;
+        carpeta.setLocation(  posX, posY);
         carpeta.setVisible(true);
         //this.moldePrincipal.add(carpeta);
         
@@ -119,7 +120,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         int margen = 7;
         int widthX = this.JPanelArchivos.getWidth() - margen;
         int heigthY = this.JPanelArchivos.getHeight() - margen;
-        int X = margen,Y = margen + 30;
+        int X = margen,Y = margen;
         this.JPanelArchivos.setLayout(null);
         
         int posicion = 0;
@@ -144,7 +145,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         int margen = 7;
         int widthX = this.JPanelArchivos.getWidth() - margen;
         int heigthY = this.JPanelArchivos.getHeight() - margen;
-        int X = margen,Y = 50 + margen;
+        int X = margen,Y = margen;
         this.JPanelArchivos.setLayout(null);
         
         int posicion = 0;
@@ -156,7 +157,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
                 if(index[0] < valoresAux.size()){
                     Archivo dato = valoresAux.get(index[0]);
                     if( dato.getTipo() == null || !dato.isContenido()){
-                        crearCarpeta(widthX, heigthY, 1, posicion, dato, (index[0] + 1) * (Y) );
+                        crearCarpeta(widthX, heigthY, 1, posicion, dato, (index[0] * 60 ) + (Y));
                         JPanelArchivos.revalidate();
                         JPanelArchivos.repaint();
                         index[0]++;
@@ -175,10 +176,12 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         JMenuItem update = new JMenuItem("Buscar");
         JMenuItem eliminar = new JMenuItem("Cerrar");
         JMenuItem salir = new JMenuItem("Exit");
-        
+        int posY = this.moldePrincipal.getY();
         agregar.addActionListener(ev->{
             System.out.println("agregar");
-            this.CrearInputAcceso(15);
+           
+            
+            this.CrearInputAcceso(posY);
             //cuadroInicio.modificarDimensionMolde(400, 400);
         });
         
