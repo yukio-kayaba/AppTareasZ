@@ -8,16 +8,22 @@ import modelo.Configuraciones;
 
 public class LogoPrincipalPanel extends javax.swing.JPanel {
     private CuadroCarpetasPanel cuadroTareas;
+    private CuadroArchivosPanel cuadroArchivosData;
     private ArchivosDatos valores;
+    private ArchivosDatos archivosData;
     private JWindow principalMolde;
     private int x_inicial,y_inicial,x_inicio = 10,y_inicio = 10;
     private int Winicial,Hinicial;
     private int largoTamanio;
     private boolean activo = false;
+    private boolean fileActive = false;
+    
     public LogoPrincipalPanel(ArchivosDatos informacion,JWindow molde ) {
         init();
         this.valores = informacion;
         this.cuadroTareas = new CuadroCarpetasPanel(informacion,this);
+        this.cuadroArchivosData = new CuadroArchivosPanel(this);
+        
         //this.cuadroTareas.setLayout(null);
         this.cuadroTareas.setSize(55,400);
         this.cuadroTareas.setVisible(false);
@@ -25,6 +31,10 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
         this.principalMolde = molde;
         this.principalMolde.add(cuadroTareas);
         
+        this.cuadroArchivosData.setSize(55,400);
+        this.cuadroArchivosData.setVisible(false);
+        this.cuadroArchivosData.setMoldePrincipal(molde);
+        this.principalMolde.add(cuadroArchivosData);
     }
 
     private void init(){
@@ -32,6 +42,12 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
         initComponents();
         this.setBackground( Configuraciones.fondoPrincipal);
     }
+    
+    public void iniciarArchivoData(ArchivosDatos datosArchivos){
+        this.archivosData = datosArchivos;
+        this.fileActive = true;
+    }
+    
     public void valoresIniciales(int width,int height){
         this.Winicial = width;
         this.Hinicial = height;
@@ -42,6 +58,14 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
         this.y_inicio = y;
     }
 
+    public boolean isFileActive() {
+        return fileActive;
+    }
+
+    public void setFileActive(boolean fileActive) {
+        this.fileActive = fileActive;
+    }
+    
     public int getLargoTamanio() {
         return largoTamanio;
     }
@@ -108,10 +132,18 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
             this.y_inicial = this.principalMolde.getY();
             this.principalMolde.setLocation(this.x_inicio, this.y_inicio);
             this.principalMolde.setSize(60, this.largoTamanio - 3);
-            this.cuadroTareas.configurarDimensiones(60, this.largoTamanio - 60, 3);
-            this.cuadroTareas.setLocation(0, 65);
-            this.cuadroTareas.setVisible(true);
-            this.cuadroTareas.iniciarDatos();
+            if( this.fileActive){
+               this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio, 3);
+               this.cuadroArchivosData.setLocation(0, 65);
+               this.cuadroArchivosData.setVisible(true);
+               this.cuadroArchivosData.iniciarDatos(this.archivosData);
+            }else{
+                this.cuadroTareas.configurarDimensiones(60, this.largoTamanio - 60, 3);
+                this.cuadroTareas.setLocation(0, 65);
+                this.cuadroTareas.setVisible(true);
+                this.cuadroTareas.iniciarDatos();
+            }
+
             this.activo = true;
         }else{
             this.principalMolde.setLocation(this.x_inicial, this.y_inicial);
@@ -124,6 +156,26 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
         this.cuadroTareas.setVisible(this.activo);
         //this.cuadroTareas.iniciarDatos();
     }//GEN-LAST:event_JLabelPrincipalMouseClicked
+    
+    public void updateCuadros(){
+        if( this.fileActive){
+           this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio, 3);
+           this.cuadroArchivosData.setLocation(0, 65);
+           this.cuadroArchivosData.setVisible(true);
+           this.cuadroArchivosData.iniciarDatos(this.archivosData);
+           
+           this.cuadroTareas.setVisible(false);
+        }else{
+            this.cuadroTareas.configurarDimensiones(60, this.largoTamanio - 60, 3);
+            this.cuadroTareas.setLocation(0, 65);
+            this.cuadroTareas.setVisible(true);
+            this.cuadroTareas.iniciarDatos();
+            
+            this.cuadroArchivosData.setVisible(false);
+                    
+        }
+    }
+    
     
     public void modificarDimensionMolde(int ancho,int largo){
         this.principalMolde.setSize(ancho, largo);

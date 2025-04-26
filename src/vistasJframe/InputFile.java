@@ -16,6 +16,7 @@ import modelo.Archivo;
 import modelo.ArchivosDatos;
 import modelo.Carpetas;
 import modelo.Configuraciones;
+import vistas.CuadroArchivosPanel;
 import vistas.CuadroCarpetasPanel;
 
 
@@ -162,6 +163,68 @@ public class InputFile extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtJugador2ActionPerformed
     public void focusText(CuadroCarpetasPanel padreObjeto,ArchivosDatos datos){
+        this.txtJugador2.setVisible(true);
+        this.txtJugador2.requestFocusInWindow();
+        InputFile acceso = this;
+        this.txtJugador2.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                System.out.println("valores : "+txtJugador2.getText());
+                String nombre = txtJugador2.getText();
+                if(nombre.length() == 0 || nombre.equals("nombre Carpeta") || !activo ){
+                    //padreObjeto.CargarDatos();
+                    return;
+                }
+                activo = false;
+                if(opcionCuadro == 1){
+                    Archivos archivoCreate = new Archivos();
+                    archivoCreate.crearCarpeta(nombre,Configuraciones.RutaArchivo());
+                    Archivo carpetaaux = new Archivo();
+                    carpetaaux.addDatos(nombre, null, Configuraciones.RutaArchivo() );
+                    datos.AgregarDatos(carpetaaux);
+                    padreObjeto.CargarDatos();
+                    
+                }else if(opcionCuadro == 2){
+                    Archivo updateValor = datos.setDato(indice);
+                    updateValor.setNombre(nombre);
+                    datos.UpdateDato(updateValor , indice);
+                    padreObjeto.CargarDatos();
+                }
+                acceso.dispose();
+            }
+        });
+        
+        this.txtJugador2.addFocusListener(new FocusAdapter(){
+            @Override
+            public void focusLost(FocusEvent e){
+                System.out.println("valores : "+txtJugador2.getText());
+                String nombre = txtJugador2.getText();
+                if(nombre.length() == 0 || nombre.equals("nombre Carpeta") || !activo){
+                    //padreObjeto.CargarDatos();
+                    return;
+                }
+                activo = false;
+                if(opcionCuadro == 1){
+                    Archivos archivoCreate = new Archivos();
+                    archivoCreate.crearCarpeta(nombre,Configuraciones.RutaArchivo());
+                    Archivo carpetaaux = new Archivo();
+                    carpetaaux.addDatos(nombre, null, Configuraciones.RutaArchivo() );
+                    datos.AgregarDatos(carpetaaux);
+                    System.out.println("Actualizado xd");
+                    padreObjeto.CargarDatos();
+                }else if(opcionCuadro == 2){
+                    Archivo updateValor = datos.setDato(indice);
+                    updateValor.setNombre(nombre);
+                    datos.UpdateDato(updateValor , indice);
+                    padreObjeto.CargarDatos();
+                }
+                acceso.dispose();
+            }
+        });
+        
+    }
+    public void focusText(CuadroArchivosPanel padreObjeto,ArchivosDatos datos){
         this.txtJugador2.setVisible(true);
         this.txtJugador2.requestFocusInWindow();
         InputFile acceso = this;
