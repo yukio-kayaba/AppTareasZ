@@ -77,6 +77,7 @@ public class CarpetasMuestra extends javax.swing.JPanel {
 
         PanelArchivo = new javax.swing.JPanel();
         JLabelNombreCarpeta = new javax.swing.JLabel();
+        imagen1 = new controller.Imagen();
 
         PanelArchivo.setBackground(new java.awt.Color(204, 204, 204));
         PanelArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,11 +103,16 @@ public class CarpetasMuestra extends javax.swing.JPanel {
         PanelArchivo.add(JLabelNombreCarpeta);
         JLabelNombreCarpeta.setBounds(0, 20, 50, 30);
 
+        imagen1.setText("imagen1");
+        imagen1.setRuta("/recursos/carpetas.png");
+        PanelArchivo.add(imagen1);
+        imagen1.setBounds(10, 0, 30, 30);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,5 +181,6 @@ public class CarpetasMuestra extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelNombreCarpeta;
     private javax.swing.JPanel PanelArchivo;
+    private controller.Imagen imagen1;
     // End of variables declaration//GEN-END:variables
 }

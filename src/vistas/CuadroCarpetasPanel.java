@@ -20,6 +20,7 @@ import modelo.Archivo;
 import modelo.ArchivosDatos;
 import modelo.Carpetas;
 import modelo.CarpetasMuestra;
+import vistasJframe.InputFile;
 
 public class CuadroCarpetasPanel extends javax.swing.JPanel {
     private ArchivosDatos informacion;
@@ -82,13 +83,14 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         this.JPanelArchivos.setComponentZOrder(carpeta, 0);
     }
     public void CrearInputAcceso(int posY){
-        this.cuadroInicio.modificarDimensionMolde(250, this.JPanelArchivos.getHeight());
-        Carpetas carpeta = new Carpetas();
-        carpeta.setLocation(0, posY);
+        //this.cuadroInicio.modificarDimensionMolde(250, this.JPanelArchivos.getHeight());
+        InputFile carpeta = new InputFile();
         //[206, 31]
+        carpeta.setLayout(null);
         carpeta.setSize(206 , 31);
+        carpeta.setLocation(  900, posY);
         carpeta.setVisible(true);
-        this.moldePrincipal.add(carpeta);
+        //this.moldePrincipal.add(carpeta);
         
         
         carpeta.focusText(this,this.informacion);
@@ -102,7 +104,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         carpeta.setLocation(posX, posY);
         
         carpeta.setSize(widthX , heigthY);
-        this.JPanelArchivos.add(carpeta);
+        //this.JPanelArchivos.add(carpeta);
         carpeta.setVisible(true);
         carpeta.focusText(this,this.informacion);
         this.JPanelArchivos.revalidate();
