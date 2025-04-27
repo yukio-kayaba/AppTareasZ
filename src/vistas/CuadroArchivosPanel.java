@@ -132,7 +132,6 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         int widthX = this.JPanelArchivos.getWidth() - margen;
         int heigthY = this.JPanelArchivos.getHeight() - margen;
         int X = margen,Y = margen;
-        this.JPanelArchivos.setLayout(null);
         
         int posicion = 0;
         for(Archivo dato : valoresAux){
@@ -157,7 +156,6 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         int widthX = this.JPanelArchivos.getWidth() - margen;
         int heigthY = this.JPanelArchivos.getHeight() - margen;
         int X = margen,Y = margen;
-        this.JPanelArchivos.setLayout(null);
         
         int posicion = 0;
         final int[] index = {0};
@@ -212,10 +210,12 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     public void configurarDimensiones(int ancho,int largo,int margen){
         int largoCuadro = this.backOption.getHeight();
         this.setSize(ancho,largo);
-        this.JPanelArchivos.setSize(ancho - margen * 2, largo - margen - largoCuadro);
+        
+        this.JPanelArchivos.setPreferredSize(new Dimension(ancho - margen * 2,this.informacion.cantidadArchivos() * 65 ));
         this.setBackground(Configuraciones.fondoPrincipal );
         this.labelPrincipal.setBackground(Configuraciones.fondoNoPrincipal );
-        this.JPanelArchivos.setLocation(margen , margen +  largoCuadro );
+        this.JPanelArchivos.revalidate();
+        //this.JPanelArchivos.setLocation(margen , margen +  largoCuadro );
     }
     
     @SuppressWarnings("unchecked")
@@ -225,6 +225,7 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         labelPrincipal = new javax.swing.JPanel();
         backOption = new controller.Imagen();
         JPanelArchivos = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
 
         labelPrincipal.setBackground(new java.awt.Color(0, 102, 102));
         labelPrincipal.setPreferredSize(new java.awt.Dimension(416, 315));
@@ -239,20 +240,32 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         });
         labelPrincipal.add(backOption);
         backOption.setBounds(6, 3, 50, 30);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+
+        JPanelArchivos.setViewportView(jPanel1);
+
         labelPrincipal.add(JPanelArchivos);
-        JPanelArchivos.setBounds(10, 40, 70, 330);
+        JPanelArchivos.setBounds(0, 40, 80, 390);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,6 +281,7 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane JPanelArchivos;
     private controller.Imagen backOption;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel labelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
