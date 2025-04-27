@@ -194,7 +194,7 @@ public class CarpetasMuestra extends javax.swing.JPanel {
             AgregarMenuIzquierdo(evt);
             return;
         }
-        this.crearVentanaTrabajo();
+        //this.crearVentanaTrabajo();
         System.out.println("click derecho");
         this.agregarArchivosCarpeta();
     }//GEN-LAST:event_PanelArchivoMousePressed

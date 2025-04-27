@@ -68,16 +68,16 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
             valorAux.setText("0");
             valorAux.setSize(WIDTH,HEIGHT);
             valorAux.setHorizontalAlignment(JLabel.CENTER);
-            this.JPanelArchivos.add(valorAux);
+            this.jScrollPane1.add(valorAux);
             return;
         }
         this.CargarDatos(150);
     }
     private void agregarScroll(){
-        JScrollPane scroll = new JScrollPane(this.JPanelArchivos);
+        JScrollPane scroll = new JScrollPane(this.jScrollPane1);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setPreferredSize(new Dimension(2, 2));
-        scroll.setBounds(5, this.JPanelArchivos.getHeight(), 5, HEIGHT);
+        scroll.setBounds(5, this.jScrollPane1.getHeight(), 5, HEIGHT);
         this.add(scroll);
     }
     
@@ -91,8 +91,8 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         carpeta.setVisible(true);
         carpeta.setPadreComponente(this);
         carpeta.repaint();
-        this.JPanelArchivos.add(carpeta);
-        this.JPanelArchivos.setComponentZOrder(carpeta, 0);
+        this.jScrollPane1.add(carpeta);
+        this.jScrollPane1.setComponentZOrder(carpeta, 0);
     }
     public void CrearInputAcceso(int posY){
         //this.cuadroInicio.modificarDimensionMolde(250, this.JPanelArchivos.getHeight());
@@ -120,20 +120,20 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         //this.JPanelArchivos.add(carpeta);
         carpeta.setVisible(true);
         carpeta.focusText(this,this.informacion);
-        this.JPanelArchivos.revalidate();
-        this.JPanelArchivos.repaint();
+        this.jScrollPane1.revalidate();
+        this.jScrollPane1.repaint();
     }
     
     public void CargarDatos(){
         
-        this.JPanelArchivos.removeAll();
+        this.jScrollPane1.removeAll();
         
         ArrayList<Archivo> valoresAux =this.informacion.getDatos();
         int margen = 7;
-        int widthX = this.JPanelArchivos.getWidth() - margen;
-        int heigthY = this.JPanelArchivos.getHeight() - margen;
+        int widthX = this.jScrollPane1.getWidth() - margen;
+        int heigthY = this.jScrollPane1.getHeight() - margen;
         int X = margen,Y = margen;
-        this.JPanelArchivos.setLayout(null);
+        this.jScrollPane1.setLayout(null);
         
         int posicion = 0;
         for(Archivo dato : valoresAux){
@@ -145,20 +145,20 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
             }
             
         }
-        this.JPanelArchivos.revalidate();
-        this.JPanelArchivos.repaint();
+        this.jScrollPane1.revalidate();
+        this.jScrollPane1.repaint();
         
     }
     
     public void CargarDatos(int tiempo){
-        this.JPanelArchivos.removeAll();
+        this.jScrollPane1.removeAll();
         
         ArrayList<Archivo> valoresAux = this.informacion.getDatos();
         int margen = 7;
-        int widthX = this.JPanelArchivos.getWidth() - margen;
-        int heigthY = this.JPanelArchivos.getHeight() - margen;
+        int widthX = this.jScrollPane1.getWidth() - margen;
+        int heigthY = this.jScrollPane1.getHeight() - margen;
         int X = margen,Y = margen;
-        this.JPanelArchivos.setLayout(null);
+        this.jScrollPane1.setLayout(null);
         
         int posicion = 0;
         final int[] index = {0};
@@ -170,8 +170,8 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
                     Archivo dato = valoresAux.get(index[0]);
                     if( dato.getTipo() == null || !dato.isContenido()){
                         crearCarpeta(widthX, heigthY, 1, posicion, dato, (index[0] * 60 ) + (Y));
-                        JPanelArchivos.revalidate();
-                        JPanelArchivos.repaint();
+                        jScrollPane1.revalidate();
+                        jScrollPane1.repaint();
                         index[0]++;
                     }
                 }else{
@@ -212,8 +212,8 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
     }
     public void configurarDimensiones(int ancho,int largo,int margen){
         this.setSize(ancho,largo);
-        this.JPanelArchivos.setSize(ancho - margen * 2, largo - margen);
-        this.JPanelArchivos.setLocation(margen , margen);
+        this.jScrollPane1.setSize(ancho - margen * 2, largo - margen);
+        this.jScrollPane1.setLocation(margen , margen);
     }    
     
     @SuppressWarnings("unchecked")
@@ -221,6 +221,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         labelPrincipal = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         JPanelArchivos = new javax.swing.JPanel();
 
         labelPrincipal.setBackground(new java.awt.Color(60, 34, 176));
@@ -233,14 +234,16 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
             }
         });
         JPanelArchivos.setLayout(null);
-        labelPrincipal.add(JPanelArchivos);
-        JPanelArchivos.setBounds(3, 3, 55, 360);
+        jScrollPane1.setViewportView(JPanelArchivos);
+
+        labelPrincipal.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 10, 70, 350);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,21 +251,21 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
     private void JPanelArchivosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPanelArchivosMousePressed
         // TODO add your handling code here:
         if(SwingUtilities.isRightMouseButton(evt)){
             this.agregarMenuInterno(evt);
             return;
         }
-        
-        
+
     }//GEN-LAST:event_JPanelArchivosMousePressed
 
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPanelArchivos;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel labelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

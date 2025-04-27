@@ -1,7 +1,6 @@
 
 package vistas;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +20,7 @@ import modelo.ArchivosDatos;
 import modelo.ArchivosMuestra;
 import modelo.Carpetas;
 import modelo.CarpetasMuestra;
+import modelo.Configuraciones;
 import vistasJframe.InputFile;
 
 public class CuadroArchivosPanel extends javax.swing.JPanel {
@@ -56,14 +56,17 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     
     
     public void iniciarDatos(ArchivosDatos informacionArchivos){
+        System.out.println("llegando aqui :");
         this.informacion = informacionArchivos;
         
         if(this.informacion.cantidadArchivos() == 0 ){
             JLabel valorAux = new JLabel();
             valorAux.setText("0");
+            System.out.println("No hay datos ");
             //valorAux.setSize(WIDTH,HEIGHT);
             valorAux.setHorizontalAlignment(JLabel.CENTER);
-            this.JPanelArchivos.setLayout(null);
+            //this.JPanelArchivos.setLayout(null);
+            
             this.JPanelArchivos.add(valorAux);
             return;
         }
@@ -207,9 +210,12 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         nuevoMenu.show(e.getComponent(), e.getX(), e.getY());;
     }
     public void configurarDimensiones(int ancho,int largo,int margen){
+        int largoCuadro = this.backOption.getHeight();
         this.setSize(ancho,largo);
-        this.JPanelArchivos.setSize(ancho - margen * 2, largo - margen);
-        this.JPanelArchivos.setLocation(margen , margen);
+        this.JPanelArchivos.setSize(ancho - margen * 2, largo - margen - largoCuadro);
+        this.setBackground(Configuraciones.fondoPrincipal );
+        this.labelPrincipal.setBackground(Configuraciones.fondoNoPrincipal );
+        this.JPanelArchivos.setLocation(margen , margen +  largoCuadro );
     }
     
     @SuppressWarnings("unchecked")
@@ -217,32 +223,32 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         labelPrincipal = new javax.swing.JPanel();
-        JPanelArchivos = new javax.swing.JPanel();
-        imagen1 = new controller.Imagen();
+        backOption = new controller.Imagen();
+        JPanelArchivos = new javax.swing.JScrollPane();
 
-        labelPrincipal.setBackground(new java.awt.Color(60, 34, 176));
+        labelPrincipal.setBackground(new java.awt.Color(0, 102, 102));
         labelPrincipal.setPreferredSize(new java.awt.Dimension(416, 315));
         labelPrincipal.setLayout(null);
 
-        JPanelArchivos.addMouseListener(new java.awt.event.MouseAdapter() {
+        backOption.setText("imagen1");
+        backOption.setRuta("/recursos/back.png");
+        backOption.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                JPanelArchivosMousePressed(evt);
+                backOptionMousePressed(evt);
             }
         });
-        JPanelArchivos.setLayout(null);
+        labelPrincipal.add(backOption);
+        backOption.setBounds(6, 3, 50, 30);
         labelPrincipal.add(JPanelArchivos);
-        JPanelArchivos.setBounds(4, 35, 55, 340);
-
-        imagen1.setText("imagen1");
-        imagen1.setRuta("/recursos/back.png");
-        labelPrincipal.add(imagen1);
-        imagen1.setBounds(0, 0, 60, 30);
+        JPanelArchivos.setBounds(10, 40, 70, 330);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,17 +258,16 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
 
     
     
-    private void JPanelArchivosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JPanelArchivosMousePressed
+    private void backOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backOptionMousePressed
         // TODO add your handling code here:
-        if(SwingUtilities.isRightMouseButton(evt)){
-            this.agregarMenuInterno(evt);
-        }
-    }//GEN-LAST:event_JPanelArchivosMousePressed
+        this.cuadroInicio.setFileActive(false);
+        this.cuadroInicio.updateCuadros();
+    }//GEN-LAST:event_backOptionMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JPanelArchivos;
-    private controller.Imagen imagen1;
+    private javax.swing.JScrollPane JPanelArchivos;
+    private controller.Imagen backOption;
     private javax.swing.JPanel labelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

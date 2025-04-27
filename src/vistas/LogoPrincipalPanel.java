@@ -132,7 +132,7 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
             this.y_inicial = this.principalMolde.getY();
             this.principalMolde.setLocation(this.x_inicio, this.y_inicio);
             this.principalMolde.setSize(60, this.largoTamanio - 3);
-            if( this.fileActive){
+            /*if( this.fileActive){
                this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio, 3);
                this.cuadroArchivosData.setLocation(0, 65);
                this.cuadroArchivosData.setVisible(true);
@@ -142,8 +142,10 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
                 this.cuadroTareas.setLocation(0, 65);
                 this.cuadroTareas.setVisible(true);
                 this.cuadroTareas.iniciarDatos();
-            }
+            }*/
 
+            this.updateCuadros();
+            
             this.activo = true;
         }else{
             this.principalMolde.setLocation(this.x_inicial, this.y_inicial);
@@ -153,7 +155,7 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
             this.activo = false;
         }
         this.setLocation(0, 0);
-        this.cuadroTareas.setVisible(this.activo);
+        //this.cuadroTareas.setVisible(this.activo);
         //this.cuadroTareas.iniciarDatos();
     }//GEN-LAST:event_JLabelPrincipalMouseClicked
     
@@ -161,21 +163,22 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
         String valorFile = this.fileActive ? "si":"no";
         System.out.println("Activo : "+ valorFile);
         if( this.fileActive){
-           this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio, 3);
-           this.cuadroArchivosData.setLocation(0, 65);
+            this.cuadroTareas.setVisible(false);
+            
+           this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio - 45, 3);
+           this.cuadroArchivosData.setLocation(0, 62);
            this.cuadroArchivosData.setVisible(true);
            this.cuadroArchivosData.iniciarDatos(this.archivosData);
-           
-           this.cuadroTareas.setVisible(false);
         }else{
-            this.cuadroTareas.configurarDimensiones(60, this.largoTamanio - 60, 3);
-            this.cuadroTareas.setLocation(0, 65);
+            this.cuadroArchivosData.setVisible(false);
+            
+            this.cuadroTareas.configurarDimensiones(60, this.largoTamanio - 45, 3);
+            this.cuadroTareas.setLocation(0, 63);
             this.cuadroTareas.setVisible(true);
             this.cuadroTareas.iniciarDatos();
-            
-            this.cuadroArchivosData.setVisible(false);
-                    
         }
+        this.principalMolde.revalidate();
+        this.principalMolde.repaint();
     }
     
     
