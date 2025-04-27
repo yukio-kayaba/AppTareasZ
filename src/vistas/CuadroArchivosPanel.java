@@ -36,6 +36,16 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         this.init();
         this.cuadroInicio = cuadro;
     }
+
+    public ArchivosDatos getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(ArchivosDatos informacion) {
+        this.informacion = informacion;
+    }
+    
+    
     
     private void init(){
        
@@ -55,11 +65,11 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     
     
     
-    public void iniciarDatos(ArchivosDatos informacionArchivos){
+    public void iniciarDatos(){
         System.out.println("llegando aqui :");
-        this.informacion = informacionArchivos;
         
         if(this.informacion.cantidadArchivos() == 0 ){
+            this.JPanelArchivos.removeAll();
             JLabel valorAux = new JLabel();
             valorAux.setText("0");
             System.out.println("No hay datos ");
@@ -68,6 +78,8 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
             //this.JPanelArchivos.setLayout(null);
             
             this.JPanelArchivos.add(valorAux);
+            this.JPanelArchivos.revalidate();
+            this.JPanelArchivos.repaint();
             return;
         }
         this.CargarDatos(150);
@@ -184,7 +196,6 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         JMenuItem agregar = new JMenuItem("crear");
         JMenuItem update = new JMenuItem("Buscar");
         JMenuItem eliminar = new JMenuItem("Cerrar");
-        JMenuItem salir = new JMenuItem("Exit");
         int posY = this.moldePrincipal.getY();
         agregar.addActionListener(ev->{
             System.out.println("agregar");
@@ -210,11 +221,13 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     public void configurarDimensiones(int ancho,int largo,int margen){
         int largoCuadro = this.backOption.getHeight();
         this.setSize(ancho,largo);
-        
-        this.JPanelArchivos.setPreferredSize(new Dimension(ancho - margen * 2,this.informacion.cantidadArchivos() * 65 ));
+        //this.jPanel1.setSize(100, 378);
+        if(this.informacion.cantidadArchivos() != 0){
+            this.JPanelArchivos.setPreferredSize(new Dimension(ancho - margen * 2,this.informacion.cantidadArchivos() * 65 ));
+        }
         this.setBackground(Configuraciones.fondoPrincipal );
-        this.labelPrincipal.setBackground(Configuraciones.fondoNoPrincipal );
-        this.JPanelArchivos.revalidate();
+        //this.labelPrincipal.setBackground(Configuraciones.fondoNoPrincipal );
+        //this.JPanelArchivos.revalidate();
         //this.JPanelArchivos.setLocation(margen , margen +  largoCuadro );
     }
     
@@ -227,7 +240,8 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         JPanelArchivos = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
 
-        labelPrincipal.setBackground(new java.awt.Color(0, 102, 102));
+        labelPrincipal.setBackground(new java.awt.Color(51, 0, 204));
+        labelPrincipal.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 102)));
         labelPrincipal.setPreferredSize(new java.awt.Dimension(416, 315));
         labelPrincipal.setLayout(null);
 
@@ -239,7 +253,13 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
             }
         });
         labelPrincipal.add(backOption);
-        backOption.setBounds(6, 3, 50, 30);
+        backOption.setBounds(20, 5, 50, 30);
+
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -255,17 +275,19 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         JPanelArchivos.setViewportView(jPanel1);
 
         labelPrincipal.add(JPanelArchivos);
-        JPanelArchivos.setBounds(0, 40, 80, 390);
+        JPanelArchivos.setBounds(10, 40, 90, 310);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+            .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,6 +298,12 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         this.cuadroInicio.setFileActive(false);
         this.cuadroInicio.updateCuadros();
     }//GEN-LAST:event_backOptionMousePressed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        if(SwingUtilities.isRightMouseButton(evt)){
+            this.agregarMenuInterno(evt);
+        }
+    }//GEN-LAST:event_jPanel1MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

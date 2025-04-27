@@ -34,7 +34,7 @@ public class Archivos {
                         int punto = nombre.lastIndexOf('.');
                         String extension = (punto > 0) ? nombre.substring(punto + 1).toLowerCase() : "sin extensión";
                         try (BufferedReader br = new BufferedReader(new FileReader(archivo1))) {
-                            String linea,contenido = null;
+                            String linea,contenido = "";
                             while ((linea = br.readLine()) != null) {
                                 contenido += linea;
                             }

@@ -132,18 +132,6 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
             this.y_inicial = this.principalMolde.getY();
             this.principalMolde.setLocation(this.x_inicio, this.y_inicio);
             this.principalMolde.setSize(60, this.largoTamanio - 3);
-            /*if( this.fileActive){
-               this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio, 3);
-               this.cuadroArchivosData.setLocation(0, 65);
-               this.cuadroArchivosData.setVisible(true);
-               this.cuadroArchivosData.iniciarDatos(this.archivosData);
-            }else{
-                this.cuadroTareas.configurarDimensiones(60, this.largoTamanio - 60, 3);
-                this.cuadroTareas.setLocation(0, 65);
-                this.cuadroTareas.setVisible(true);
-                this.cuadroTareas.iniciarDatos();
-            }*/
-
             this.updateCuadros();
             
             this.activo = true;
@@ -164,11 +152,12 @@ public class LogoPrincipalPanel extends javax.swing.JPanel {
         System.out.println("Activo : "+ valorFile);
         if( this.fileActive){
             this.cuadroTareas.setVisible(false);
-            
+           
+           this.cuadroArchivosData.setInformacion(archivosData);
            this.cuadroArchivosData.configurarDimensiones(60, this.largoTamanio - 45, 3);
-           this.cuadroArchivosData.setLocation(0, 62);
+           this.cuadroArchivosData.setLocation(0, 63);
            this.cuadroArchivosData.setVisible(true);
-           this.cuadroArchivosData.iniciarDatos(this.archivosData);
+           this.cuadroArchivosData.iniciarDatos();
         }else{
             this.cuadroArchivosData.setVisible(false);
             

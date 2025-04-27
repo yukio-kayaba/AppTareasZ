@@ -207,16 +207,23 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
             System.out.println("cerrar");
         });
         
+        salir.addActionListener(ev->{
+            System.exit(0);
+        });
+        
         nuevoMenu.add(agregar);
         nuevoMenu.add(update);
         nuevoMenu.add(eliminar);
+        nuevoMenu.add(salir);
         nuevoMenu.show(e.getComponent(), e.getX(), e.getY());;
     }
     public void configurarDimensiones(int ancho,int largo,int margen){
         this.setSize(ancho,largo);
         //this.jScrollPane1.setSize(ancho - margen * 2, largo - margen);
+        if(this.informacion.cantidadArchivos()  != 0){
+            this.jScrollPane1.setPreferredSize(new Dimension(ancho - margen * 2,this.informacion.cantidadArchivos() * 65 ));
+        }
         
-        this.jScrollPane1.setPreferredSize(new Dimension(ancho - margen * 2,this.informacion.cantidadArchivos() * 65 ));
         this.jScrollPane1.setLocation(margen , margen);
         this.jScrollPane1.revalidate();
     }    
