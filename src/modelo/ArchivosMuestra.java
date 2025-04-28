@@ -136,6 +136,7 @@ public class ArchivosMuestra extends javax.swing.JPanel {
         JPopupMenu menu = new JPopupMenu();
         JMenuItem delete = new JMenuItem("Eliminar");
         JMenuItem update = new JMenuItem("Update");
+        JMenuItem doblePage = new JMenuItem("2 HOJA");
         delete.addActionListener(ev ->{
             boolean resultado = this.informacion.DeleteDato(this.posicion);
             if(resultado){
@@ -147,6 +148,11 @@ public class ArchivosMuestra extends javax.swing.JPanel {
             this.padreComponente.CrearInputAcceso(3, this.getWidth(), this.getHeight(), this.getX(), this.getY(), 2, this.posicion);
         });
         
+        
+        
+        if( this.padreComponente.isCuadroInicio()){
+            menu.add(doblePage);
+        }
         menu.add(delete);
         menu.add(update);
         menu.show(e.getComponent(), e.getX(), e.getY());
@@ -157,6 +163,10 @@ public class ArchivosMuestra extends javax.swing.JPanel {
         Archivos datosArchivos = new Archivos();
         ArrayList<Archivo> valoresAux = datosArchivos.obtenerDatosCarpeta(direccion, true);
         ArchivosDatos controllerTxt = new ArchivosDatos(valoresAux);
+        for( Archivo valor : this.informacion.getDatos()){
+            System.out.println("Nombre : "+valor.getNombre() +"direccion : "+ valor.getDireccion()+  " descripcion : "+valor.getContenidoTexto() );
+        }
+        this.padreComponente.CambiarEstadoArchivo();
         //CuadroArchivos valores = new CuadroArchivos(controllerTxt, this.nombre);
         //valores.setContenedorMain(this.padreComponente);
         //valores.setVisible(true);

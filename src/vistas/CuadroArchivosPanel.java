@@ -27,6 +27,7 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     private ArchivosDatos informacion;
     private JWindow moldePrincipal;
     private LogoPrincipalPanel cuadroInicio;
+    private boolean UsoArchivo = false;
     public CuadroArchivosPanel(ArchivosDatos valores,LogoPrincipalPanel cuadro) {
         this.init();
         this.informacion = valores;
@@ -44,7 +45,12 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     public void setInformacion(ArchivosDatos informacion) {
         this.informacion = informacion;
     }
-    
+    public boolean isCuadroInicio(){
+        return this.UsoArchivo;
+    }
+    public void CambiarEstadoArchivo(){
+        this.UsoArchivo = ( this.UsoArchivo) ? false:true;
+    }
     
     
     private void init(){
