@@ -10,11 +10,14 @@ import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import vistas.CuadroArchivosPanel;
 import vistas.CuadroCarpetasPanel;
+import vistas.HojaTrabajoArchivo;
+import vistasJframe.ArchivoTrabajoView;
 
 public class ArchivosMuestra extends javax.swing.JPanel {
     private String nombre;
@@ -22,12 +25,14 @@ public class ArchivosMuestra extends javax.swing.JPanel {
     private ArchivosDatos informacion;
     private int posicion;
     private CuadroArchivosPanel padreComponente;
+    private ArchivoTrabajoView JFramevista;
     
     public ArchivosMuestra(String nombre,ArchivosDatos datos){
         this.nombre = nombre;
         init();
         this.informacion = datos;
         this.JLabelNombreCarpeta.setText(this.nombre);
+        this.JFramevista =  new ArchivoTrabajoView();
     }
     public ArchivosMuestra(){
         init();
@@ -160,17 +165,14 @@ public class ArchivosMuestra extends javax.swing.JPanel {
     
     private void crearVentanaTrabajo(){
         String rutaAux = this.direccion+"/"+this.nombre;
-        Archivos datosArchivos = new Archivos();
-        ArrayList<Archivo> valoresAux = datosArchivos.obtenerDatosCarpeta(direccion, true);
-        ArchivosDatos controllerTxt = new ArchivosDatos(valoresAux);
-        for( Archivo valor : this.informacion.getDatos()){
-            System.out.println("Nombre : "+valor.getNombre() +"direccion : "+ valor.getDireccion()+  " descripcion : "+valor.getContenidoTexto() );
-        }
-        this.padreComponente.CambiarEstadoArchivo();
-        //CuadroArchivos valores = new CuadroArchivos(controllerTxt, this.nombre);
-        //valores.setContenedorMain(this.padreComponente);
-        //valores.setVisible(true);
-        //this.padreComponente.setVisible(false);
+
+        this.JFramevista.addHoja(direccion, nombre);
+        
+        this.JFramevista.UpdateTablas();
+        this.JFramevista.setSize(525, 400);
+        this.JFramevista.setVisible(true);
+        System.out.println(" hojas : "+ this.JFramevista.getCantidadHojas());
+        
     }
     
     private void PanelArchivoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PanelArchivoMousePressed

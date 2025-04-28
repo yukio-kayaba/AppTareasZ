@@ -5,22 +5,35 @@
 package vistas;
 
 import java.awt.Color;
+import vistasJframe.ArchivoTrabajoView;
 
 /**
  *
  * @author HP
  */
 public class HojaTrabajoArchivo extends javax.swing.JPanel {
-
-    /**
-     * Creates new form HojaTrabajoArchivo
-     */
-    public HojaTrabajoArchivo( String direccion,String nombre,CuadroArchivosPanel padreArchivosMuestra ){
+    
+    private String direccion;
+    private String nombre;
+    private ArchivoTrabajoView padreComponente;
+    
+    public HojaTrabajoArchivo( String direccion,String nombre ,ArchivoTrabajoView padreComponente){
         iniciar();
+        this.direccion = direccion;
+        this.nombre = nombre;
+        this.padreComponente = padreComponente;
     }
 
     public void iniciar(){
         initComponents();
+    }
+    public void SetPosicionData(int width,int height,int x,int y){
+        this.setSize(width, height);
+        this.setLocation(x, y);
+        this.jTextArea1.setSize( width - 10 * 2, height - 10);
+        this.jTextArea1.setLocation(10, 75);
+        //this.revalidate();
+        this.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +47,7 @@ public class HojaTrabajoArchivo extends javax.swing.JPanel {
         tituloHoja = new javax.swing.JLabel();
         lblcierre = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setLayout(null);
 
         jTextArea1.setColumns(20);
@@ -42,7 +55,7 @@ public class HojaTrabajoArchivo extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 70, 480, 470);
+        jScrollPane1.setBounds(10, 60, 480, 480);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -52,15 +65,16 @@ public class HojaTrabajoArchivo extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 40, 500, 20);
+        jPanel2.setBounds(0, 30, 500, 10);
 
+        tituloHoja.setForeground(new java.awt.Color(255, 255, 255));
         tituloHoja.setText("jLabel1");
         jPanel1.add(tituloHoja);
-        tituloHoja.setBounds(10, 10, 440, 16);
+        tituloHoja.setBounds(10, 0, 440, 30);
 
         lblcierre.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
         lblcierre.setForeground(new java.awt.Color(240, 192, 255));
@@ -78,7 +92,7 @@ public class HojaTrabajoArchivo extends javax.swing.JPanel {
             }
         });
         jPanel1.add(lblcierre);
-        lblcierre.setBounds(470, 10, 20, 20);
+        lblcierre.setBounds(475, 5, 20, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,7 +109,7 @@ public class HojaTrabajoArchivo extends javax.swing.JPanel {
     private void lblcierreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcierreMouseClicked
         // TODO add your handling code here:
         //System.exit(0);
-        
+        this.setVisible(false);
     }//GEN-LAST:event_lblcierreMouseClicked
 
     private void lblcierreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblcierreMouseEntered
