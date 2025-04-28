@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="labelPrincipal" alignment="0" pref="101" max="32767" attributes="0"/>
+          <Component id="labelPrincipal" alignment="0" pref="89" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -67,7 +67,7 @@
         <Container class="javax.swing.JScrollPane" name="JPanelArchivos">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="40" width="90" height="310"/>
+              <AbsoluteConstraints x="10" y="40" width="80" height="310"/>
             </Constraint>
           </Constraints>
 

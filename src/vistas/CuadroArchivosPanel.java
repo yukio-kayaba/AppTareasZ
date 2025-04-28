@@ -69,7 +69,7 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         System.out.println("llegando aqui :");
         
         if(this.informacion.cantidadArchivos() == 0 ){
-            this.JPanelArchivos.removeAll();
+            //this.JPanelArchivos.removeAll();
             JLabel valorAux = new JLabel();
             valorAux.setText("0");
             System.out.println("No hay datos ");
@@ -275,13 +275,13 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
         JPanelArchivos.setViewportView(jPanel1);
 
         labelPrincipal.add(JPanelArchivos);
-        JPanelArchivos.setBounds(10, 40, 90, 310);
+        JPanelArchivos.setBounds(10, 40, 80, 310);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(labelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,6 +295,7 @@ public class CuadroArchivosPanel extends javax.swing.JPanel {
     
     private void backOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backOptionMousePressed
         // TODO add your handling code here:
+        this.JPanelArchivos.removeAll();
         this.cuadroInicio.setFileActive(false);
         this.cuadroInicio.updateCuadros();
     }//GEN-LAST:event_backOptionMousePressed

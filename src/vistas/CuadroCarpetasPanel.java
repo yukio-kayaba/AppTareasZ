@@ -71,7 +71,7 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
             this.jScrollPane1.add(valorAux);
             return;
         }
-        this.CargarDatos();
+        this.CargarDatos(150);
     }
     private void agregarScroll(){
         JScrollPane scroll = new JScrollPane(this.jScrollPane1);
@@ -261,15 +261,13 @@ public class CuadroCarpetasPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jScrollPane1);
 
         labelPrincipal.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 10, 90, 370);
+        jScrollPane2.setBounds(10, 10, 80, 370);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(labelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
